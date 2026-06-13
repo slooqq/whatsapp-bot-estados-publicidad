@@ -1,0 +1,11 @@
+node_modules/
+auth/
+dist/
+.wwebjs_cache/
+historial.json
+semana.json
+failed.log
+Thumbs.db
+desktop.ini
+*.txt
+test_*.js

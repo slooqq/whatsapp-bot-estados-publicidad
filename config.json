@@ -1,0 +1,85 @@
+{
+  "directorio_base": "D:\\PUBLICIDAD AUTONOMA",
+  "delay_segundos": 15,
+  "reintentos_por_imagen": 3,
+  "cuentas": {
+    "a": {
+      "activa": true
+    },
+    "b": {
+      "activa": true
+    },
+    "c": {
+      "activa": true
+    },
+    "d": {
+      "activa": false
+    },
+    "e": {
+      "activa": false
+    },
+    "f": {
+      "activa": false
+    },
+    "g": {
+      "activa": false
+    },
+    "h": {
+      "activa": false
+    },
+    "i": {
+      "activa": false
+    },
+    "j": {
+      "activa": false
+    },
+    "k": {
+      "activa": false
+    },
+    "l": {
+      "activa": false
+    },
+    "m": {
+      "activa": false
+    },
+    "n": {
+      "activa": false
+    },
+    "o": {
+      "activa": false
+    },
+    "p": {
+      "activa": false
+    },
+    "q": {
+      "activa": false
+    },
+    "r": {
+      "activa": false
+    },
+    "s": {
+      "activa": false
+    },
+    "t": {
+      "activa": false
+    },
+    "u": {
+      "activa": false
+    },
+    "v": {
+      "activa": false
+    },
+    "w": {
+      "activa": false
+    },
+    "x": {
+      "activa": false
+    },
+    "y": {
+      "activa": false
+    },
+    "z": {
+      "activa": false
+    }
+  }
+}
