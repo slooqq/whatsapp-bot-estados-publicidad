@@ -8,8 +8,8 @@ const EXTENSIONS = new Set([
 ]);
 
 const DIAS = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
-const SEMANA_PATH = path.join(__dirname, '..', 'semana.json');
-const HISTORIAL_PATH = path.join(__dirname, '..', 'historial.json');
+const SEMANA_PATH = path.join(process.cwd(), 'semana.json');
+const HISTORIAL_PATH = path.join(process.cwd(), 'historial.json');
 
 const CATEGORIAS = ['solar', 'UNI T', 'domotica', 'electronica', 'pos pc', 'sabado'];
 

@@ -3,11 +3,22 @@
   "version": "1.0.0",
   "description": "Bot para publicar estados en WhatsApp, Facebook e Instagram",
   "main": "dist/index.js",
+  "bin": "dist/index.js",
   "scripts": {
     "postinstall": "node postinstall.js",
     "build": "tsc",
     "start": "ts-node src/index.ts",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "package": "pkg dist/index.js --targets node18-win-x64 --output build/bot-publicidad.exe --public-packages \"*\" --public"
+  },
+  "pkg": {
+    "scripts": [
+      "dist/**/*.js"
+    ],
+    "assets": [
+      "node_modules/**/*"
+    ],
+    "outputPath": "build"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -36,7 +36,7 @@ function iniciarCliente(id: string): Promise<void> {
     const client = new Client({
       authStrategy: new LocalAuth({
         clientId: `cuenta_${id}`,
-        dataPath: path.join(__dirname, '..', '..', 'auth'),
+        dataPath: path.join(process.cwd(), 'auth'),
       }),
       puppeteer: {
         headless: true,

@@ -25,5 +25,11 @@ for %%d in (
     )
 )
 
-npm start
+if exist "build\bot-publicidad.exe" (
+    echo Iniciando bot desde ejecutable...
+    build\bot-publicidad.exe
+) else (
+    echo Ejecutable no encontrado, iniciando con npm...
+    npm start
+)
 pause

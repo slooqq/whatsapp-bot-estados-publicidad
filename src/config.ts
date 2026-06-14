@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const CONFIG_PATH = path.join(__dirname, '..', 'config.json');
+const CONFIG_PATH = path.join(process.cwd(), 'config.json');
 
 export interface Configuracion {
   directorio_base: string;

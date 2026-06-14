@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const LOG_PATH = path.join(__dirname, '..', 'failed.log');
+const LOG_PATH = path.join(process.cwd(), 'failed.log');
 
 export function registrarFallo(cuenta: string, archivo: string, error: string): void {
   const ts = new Date().toISOString().slice(0, 19).replace('T', ' ');
