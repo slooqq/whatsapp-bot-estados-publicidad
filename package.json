@@ -4,6 +4,7 @@
   "description": "Bot para publicar estados en WhatsApp, Facebook e Instagram",
   "main": "dist/index.js",
   "scripts": {
+    "postinstall": "node postinstall.js",
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "dev": "ts-node src/index.ts"
