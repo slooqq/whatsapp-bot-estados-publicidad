@@ -15,9 +15,9 @@ const CATEGORIAS = ['solar', 'UNI T', 'domotica', 'electronica', 'pos pc', 'saba
 
 const CATEGORIA_FOLDERS: Record<string, Record<number, string>> = {
   'solar':       { 1: '1 p -  solar', 2: '2 p - solar' },
-  'UNI T':       { 1: '1 p - UNI T', 2: '2 p - u t' },
-  'domotica':    { 1: '1 p -  domotica', 2: '2 p - domotica' },
-  'electronica': { 1: '1 p -  electronica', 2: '2 p - electronica' },
+  'UNI T':       { 1: '1 p - UNI T', 2: '2 p - u t', 3: '3 p - UNI T', 4: '4 p - UNI T', 5: '5 p - UNI T' },
+  'domotica':    { 1: '1 p -  domotica', 2: '2 p - domotica', 3: '3 p - domotica' },
+  'electronica': { 1: '1 p -  electronica', 2: '2 p - electronica', 3: '3 p - electronica', 4: '4 p - electronica' },
   'pos pc':      { 1: '1 p - pos pc', 2: '2 p - pos pc' },
   'sabado':      { 1: '1 p', 2: '2 p' },
 };
@@ -82,8 +82,13 @@ export function asegurarSemana(): SemanaInfo {
     return prev;
   }
 
-  const nuevaVariante = prev.variante === 0 ? 1 : (prev.variante === 1 ? 2 : 1);
+  const nuevaVariante = prev.variante === 0 ? 1 : (prev.variante % 5) + 1;
   const nuevoOrden = shuffleArray(CATEGORIAS);
+
+  const labels: Record<number, string> = {
+    1: 'CON PRECIOS', 2: 'SIN PRECIOS',
+    3: 'MARCA 1', 4: 'MARCA 2', 5: 'SIN MARCA',
+  };
 
   const nueva: SemanaInfo = {
     semana_clave: currentKey,
@@ -93,8 +98,7 @@ export function asegurarSemana(): SemanaInfo {
 
   guardarSemana(nueva);
 
-  const label = nuevaVariante === 1 ? 'CON PRECIOS' : 'SIN PRECIOS';
-  console.log(`\n📅 Nueva semana (${currentKey}) — Variante ${nuevaVariante} (${label})`);
+  console.log(`\n📅 Nueva semana (${currentKey}) — Variante ${nuevaVariante} (${labels[nuevaVariante] || ''})`);
   console.log(`   Orden: ${nuevoOrden.join(' → ')}`);
 
   return nueva;
@@ -123,14 +127,26 @@ export function obtenerAsignacionDelDia(dia: string): Record<string, string> | n
 
 export function obtenerCarpeta(categoria: string, variante: number): { ruta: string; nombre: string } | null {
   const folderName = CATEGORIA_FOLDERS[categoria]?.[variante];
-  if (!folderName) return null;
-
   const cfg = cargarConfig();
-  const ruta = path.join(cfg.directorio_base, folderName);
 
-  if (!fs.existsSync(ruta)) return null;
+  if (folderName) {
+    const ruta = path.join(cfg.directorio_base, folderName);
+    if (fs.existsSync(ruta)) return { ruta, nombre: folderName };
+  }
 
-  return { ruta, nombre: folderName };
+  // Fallback a variante 1 si la actual no existe
+  if (variante !== 1) {
+    const fallbackName = CATEGORIA_FOLDERS[categoria]?.[1];
+    if (fallbackName) {
+      const fallbackRuta = path.join(cfg.directorio_base, fallbackName);
+      if (fs.existsSync(fallbackRuta)) {
+        console.log(`   ⚠️ "${categoria}" no tiene variante ${variante}, usando variante 1`);
+        return { ruta: fallbackRuta, nombre: fallbackName };
+      }
+    }
+  }
+
+  return null;
 }
 
 // ─── HISTORIAL ─────────────────────────────────────────
